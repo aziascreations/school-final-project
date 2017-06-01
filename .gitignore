@@ -1,4 +1,5 @@
 node.exe
 orig/
 tests/
-*.csv
+users-raw.csv
+node_modules/

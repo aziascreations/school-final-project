@@ -1,26 +1,55 @@
+/*
+ * settings.js
+ * -----------
+ * 
+ * -----------
+ * 
+ * -----------
+ * Source: https://stackoverflow.com/questions/171251/how-can-i-merge-properties-of-two-javascript-objects-dynamically
+ */
+
 var fs = require("fs");
 var exports = module.exports = {};
 
-var settings = {}
+// Evite les erreurs "set property [x] of undefined"
+var settings = {
+	raw: {},
+	data: {}
+}
 
-settings.raw = fs.readFileSync("./settings.json");
-if(settings.raw==null) {
-	console.error("Error: settings.raw is null or undefined !");
+settings.raw.common = fs.readFileSync("./settings-common.json").toString();
+settings.raw.js = fs.readFileSync("./settings-js.json").toString();
+
+if(settings.raw.common == null) {
+	console.error("Error: settings.raw.common is null or undefined !");
 	process.exit(1);
 }
 
-// Utiliser un try catch
-settings.data = JSON.parse(settings.raw);
+if(settings.raw.js == null) {
+	console.error("Error: settings.raw.js is null or undefined !");
+	process.exit(1);
+}
 
-exports.data = settings.data;
+//console.log(settings.raw.common);
+//console.log(settings.raw.js);
 
-/*if (require.main === module) {
-	// Ne sert à rien, les modifications sur process.env ne sortent pas du processus...
-	for(var key in settings.data) {
-		if(settings.data.hasOwnProperty(key)) {
-			process.env[key] = settings.data[key];
-		}
-	}
-} else {
-	exports.data = settings.data;
-}/**/
+try {
+	settings.data.common = JSON.parse(settings.raw.common);
+} catch(err) {
+	console.error("Erreur: settings-common.json mal formaté !");
+	console.error(err);
+	process.exit(1);
+}
+
+try {
+	settings.data.js = JSON.parse(settings.raw.js);
+} catch(err) {
+	console.error("Erreur: settings-js.json mal formaté !");
+	console.error(err);
+	process.exit(1);
+}
+
+// Combine les 2 objets et l'exporte.
+exports.data = Object.assign(settings.data.common, settings.data.js);
+
+//console.log(exports.data);

@@ -1,8 +1,15 @@
 @echo off
 
-rem Sources:
-rem    http://stackoverflow.com/questions/25045985/random-alphanumeric
-rem    http://stackoverflow.com/questions/17750511/how-to-return-value-from-one-batch-file-to-caller-batch-file
+:: genpwd.bat
+:: ----------
+::
+:: ----------
+:: Retour: (Variable)
+::  %pwd% - Texte contenant le mot de passe.
+:: ----------
+:: Sources:
+::  http://stackoverflow.com/questions/25045985/random-alphanumeric
+::  http://stackoverflow.com/questions/17750511/how-to-return-value-from-one-batch-file-to-caller-batch-file
 
 setlocal enableextensions enabledelayedexpansion
 
@@ -18,11 +25,10 @@ for %%a in (%alphabet%) do (
 
 rem Generate the output, selecting 32 randoms elements from the array
 set "k="
-for /l %%a in (1 1 8) do (
+for /l %%a in (1 1 6) do (
 	set /a "r=!random! %% size"
 	for %%b in (!r!) do set "k=!k!!a.%%b!"
 )
-rem echo(%k%
 
 endlocal & set pwd=%k%
 

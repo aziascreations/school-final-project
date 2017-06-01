@@ -1,0 +1,13 @@
+{
+	"_": "J'ai du séparer les regex car cmd.exe avait des problèmes avec les caractères spéciaux...",
+	
+	"_": "Ce regex est utilisé pour vérifier les lignes non-préparés (Nom;Prénom;Classe/Groupe) ne vas pas (les lettres avec accents)",
+	"regexCsvRaw": "^(([A-Z]([a-z]|çéàè)+(\\s|\\-)?)+;){2}[0-9A-Za-z]+$",
+	
+	"_": "Ce regex est utilisé pour vérifier les lignes préparés (Identifiant;Nom;Prénom;Classe/Groupe)",
+	"regexCsvProcessed": "^[a-z]+;(([A-Z]([a-z]|çéàè)+(\\s|\\-)?)+;){2}[0-9A-Za-z]+$",
+	
+	"_": "Ces regexs sont utilisés pour retirer les caractères spéciaux",
+	"_": "Espaces et tirets (pas utilisé, ne fonctionnait pas -> remplacé dans le code)",
+	"regexCsvClean1": "\\B |\\-|\\s/g"
+}

@@ -1,0 +1,11 @@
+{
+	"adpRoot": "DC=sciences,DC=amp",
+
+	"adpUsers": "OU=Utilisateurs",
+	"adpProfs": "OU=Professeurs",
+	"adpEleves": "OU=Eleves",
+
+	"adpGroups": "OU=Groupes",
+	"grpProfs": "Professeurs",
+	"grpEleves": "Eleves"
+}

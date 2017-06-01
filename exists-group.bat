@@ -5,7 +5,7 @@ if [%1] == [] goto exit-false
 rem Tester si >nul influence le résultat
 dsget group %1
 
-if %ERRORLEVEL% neq 0 (
+if errorlevel 1 (
 	goto exit-false
 ) else (
 	goto exit-true
